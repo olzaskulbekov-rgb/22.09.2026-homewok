@@ -1,0 +1,378 @@
+
+# Задание 1
+city = "Алматы" # Global
+# Глобалальная переменная не изменилась так как мы в функции использовали отдельную переменную
+def show_trip():
+    city = "Шымкент" # Local
+    print("Поездка EKEB: ", city)
+
+show_trip()
+print("Исходный город: ", city)
+
+# Задание 2
+total = 10000 # Global
+def lunch_total(price, quantity):
+    total = price * quantity # Local, 15-16 строка её параметры
+    return total
+print(lunch_total(0, 2), "Тенге")
+print(lunch_total(1200, 0), "Тенге")
+print(lunch_total(1200, 3), "Тенге")
+print(f"{total} Тенге")
+
+# Задание 3
+bugs_found = 0
+def register_bug(amount):
+    global bugs_found
+    bugs_found += amount
+    return bugs_found
+print(register_bug(2), "Найденно багов")
+print(register_bug(3), "Найденно багов")
+print(register_bug(0), "Найденно багов")
+
+# Исправление ошибки из подзадачи
+bugs_found = 0
+def register_bug(amount):
+    global bugs_found # Добавлено 'global' чтобы функция работала коректно
+    bugs_found += amount
+    return bugs_found
+print(register_bug(2), "Всего багов")
+
+# Задание 4
+def make_counter():
+    count = 0
+    def next_check():
+        nonlocal count
+        count += 1
+        return count
+    return next_check
+counter_a = make_counter()
+counter_b = make_counter()
+print("Счетчик А: ", counter_a())
+print("Счетчик А: ", counter_a())
+print("Счетчик Б: ", counter_b())
+print("Счетчик А: ", counter_a())
+print("Счетчик Б: ", counter_b())
+
+# Задание 5
+def make_wallet(start_balance):
+    balance = start_balance
+    def buy(price):
+        nonlocal balance
+        if balance >= price:
+            balance -= price
+            return balance
+        else:
+            return -1
+    return buy
+ekeb_wallet = make_wallet(2000)
+trip_wallet = make_wallet(500)
+empty_wallet = make_wallet(0)
+
+print("Осталось на балансе: ", empty_wallet(0))
+print("Отказ - недостаточно средтсв: ", empty_wallet(1))
+print("Осталось на балансе: ", ekeb_wallet(700))
+print("Отказ - недостаточно средтсв: ", ekeb_wallet(1500))
+print("Осталось на балансе: ", ekeb_wallet(300))
+print("Осталось на балансе: ", ekeb_wallet(1000))
+print("Отказ - недостаточно средтсв: ", ekeb_wallet(1))
+print("Осталось на балансе: ", ekeb_wallet(0))
+print("Осталось на балансе: ", trip_wallet(200))
+
+
+#хз какое сентября
+
+
+
+# Задание 1
+# Функция с выводом сообщения Пайтон это интересно 3 раза.
+def show_message(message):
+    print(message)
+
+show_message("Пайтон это интересно")
+show_message("Пайтон это интересно")
+show_message("Пайтон это интересно")
+
+# Задание 2
+# Функция с привествием, проверить минимум с двумя именами.
+def greet(name="Ваня"):
+    print(f"Привет {name}!")
+greet()
+greet("Азат")
+
+# Задание 3
+# Функция с возращением квадрата числа, попробуйте с числами 0, 3, -5.
+def square(number):
+    return number * number
+print(square(3))
+print(square(-5))
+print(square(0))
+
+# Задание 4
+# Четное или нечетное
+def is_even(number):
+    if number % 2 == 0:
+        return True
+    else:
+        return False
+print(is_even(5))
+print(is_even(2))
+
+# Задание 5
+# Максимум из двух
+def max_of_two(a,b):
+    if a > b:
+        return a
+    else:
+        return b
+print(max_of_two(2,3))
+print(max_of_two(10,5))
+
+# Задание 6
+# Цена со скидкой
+def calculate_distance(price, discount=0):
+    return price * (1 - discount / 100)
+print(calculate_distance(1000,15))
+print(calculate_distance(5000,25))
+
+# Задание 7
+# Простой калькулятор
+def add(a, b):
+    return a + b
+def subtract(a, b):
+    return a - b
+def multiply(a, b):
+    return a * b
+def divide(a, b):
+    if b == 0:
+        return "На ноль делить нельзя"
+    else:
+        return a / b
+print("Сумма:", add(2,10))
+print("Разность: ", subtract(2,2))
+print("Произведение: ", multiply(2,2))
+print("Деление: ", divide(0,5))
+
+# Задание 8
+# Задание со звездочкой
+def is_palindrome(text):
+    text = text.lower()
+    return text == text[::-1]
+print("Слово палидром? ", is_palindrome("топот"))
+print("Слово палидром? ", is_palindrome("python"))
+
+# Финальное задание
+# Данные об ученике
+def student_info(name, age=None, city="Не указан"):
+    return f"Ученик: {name}, возраст: {age}, город: {city}"
+print(student_info(name = "Арман", age = 16, city = "Костанай"))
+print(student_info(name = "азамат", age = 19, city = "караганда"))
+print(student_info(name = "ислам", age = 16,))
+print(student_info(name= "диас", city = "Астана"))
+
+
+
+
+#тоже не помню какое сентября
+
+
+#Задание 1
+city = "Алматы" #Глобальная
+
+def show_trip():
+    city = "Шымкент" #Локальная
+    print("Поездка ЕКЕБ", city)
+
+show_trip()
+print("Исходный город", city)
+
+#Изначально дается переменная city, он является глобальным.
+#В функции def show_trip дается локальная city, работающая только для данной функции, которая заменяет глоб. city именно в даной функции
+
+#Задание 2
+
+
+total = 10000
+
+def lunch_total(price, quantity):
+    total = price * quantity
+    return total
+print(lunch_total(1200, 3))
+print(lunch_total(1200, 0))
+print(lunch_total(0, 2))
+print(f"{total} тенге")
+
+#Задание 3
+
+
+
+bugs_found = 0
+def register_bugs(amount):
+    global bugs_found
+    bugs_found += amount
+    return bugs_found
+print(register_bugs(2))
+
+
+#задание 4  
+
+def make_counter():
+    count = 0
+
+    def next_check():
+        nonlocal count
+        count += 1
+        return count
+
+    return next_check
+
+
+
+counter_a = make_counter()
+counter_b = make_counter()
+
+print(counter_a())
+print(counter_a())
+print(counter_b())
+print(counter_a())
+print(counter_b())
+
+
+
+
+№ тоже не помню какое сентября
+
+
+
+
+# Пропуск на мероприятие EKEB
+def entry_message(group):
+    if group == "Т118":
+        return "Т118: Вход разрешён"
+    else:
+        return "Обратитесь к куратору"
+check_entry = entry_message # Почему не используеться скобки? Мы просто копируем ссылку на функцую.
+user_group = input("Введите номер вашей группы: ") # Если использовать скобки произойет вызов функции
+print(check_entry(user_group))
+print(type(check_entry)) # Это обьект функции, арезультат её вызова строка str
+print(type(check_entry("Т118")))
+
+
+
+
+
+
+# Учебные тарифы поездки в Казахстане
+def standard_fare(km):
+    return 500 + 100 * km
+def student_fare(km):
+    return 300 + 70 * km
+def trip_cost(km, tariff):
+    return tariff(km)
+# Проверка таблицы
+print("Ожидается тенге",trip_cost(10, standard_fare))
+print("Ожидается тенге",trip_cost(10, student_fare))
+print("Ожидается тенге",trip_cost(0, standard_fare))
+print("Ожидается тенге",trip_cost(0, student_fare))
+# Проверка условия
+print("Ожидается тенге",trip_cost(1, standard_fare)) # Почему цена остается 600 и 370?
+print("Ожидается тенге",trip_cost(1, student_fare))  # Это минимальная цена за 1 км.
+
+
+
+
+
+
+# Ярмарка EKEB
+def make_discount(amount):
+    def discount(price):
+        result = price - amount
+        if result < 0:
+            return 0
+        return result
+    return discount
+
+# Создание функций с разными размерами скидок
+discount_0 = make_discount(0)
+discount_100 = make_discount(100)
+discount_300 = make_discount(300)
+
+# Базовые проверки из таблицы
+print(discount_100(250))  # 150
+print(discount_300(250))  # 0
+print(discount_100(100))  # 0
+print(discount_100(0))    # 0
+print(discount_300(500))  # 200
+print(discount_100(500))  # 400
+
+# Дополнительные проверки по условию
+print(discount_0(500))    # 500 (нулевая скидка)
+print(discount_100(99))   # 0   (цена на 1 тенге ниже скидки)
+print(discount_100(101))  # 1   (цена на 1 тенге выше скидки)
+
+
+
+
+
+
+
+
+# 1. Функция-тестировщик
+def check_case(function, value, expected):
+    actual = function(value)
+    return actual == expected
+
+
+# Функция, которую нужно проверить (из условия)
+def ekeb_price(price):
+    if price >= 1000:
+        return price - 100
+    return price
+
+
+# Ошибочная функция (из условия)
+def wrong_price(price):
+    return price - 100
+
+
+# Функция из задания 3 (для проверки)
+def make_discount(amount):
+    def discount(price):
+        result = price - amount
+        if result < 0:
+            return 0
+        return result
+
+    return discount
+
+
+discount_100 = make_discount(100)
+
+
+# --- ПРОВЕРКИ ---
+
+# 1. Тесты для ekeb_price (все True)
+print(check_case(ekeb_price, 999, 999))  # True
+print(check_case(ekeb_price, 1000, 900))  # True
+print(check_case(ekeb_price, 1001, 901))  # True
+
+# 2. Тесты для wrong_price (False, True, True)
+print(check_case(wrong_price, 999, 999))  # False
+print(check_case(wrong_price, 1000, 900))  # True
+print(check_case(wrong_price, 1001, 901))  # True
+
+# 3. Дополнительные проверки из задания
+print(check_case(ekeb_price, 0, 0))  # True (цена 0)
+print(check_case(discount_100, 250, 150))  # True (discount_100 из 3-го задания)
+
+
+
+
+
+
+#тоже какое нибудь задание
+
+
+
+
+
+
