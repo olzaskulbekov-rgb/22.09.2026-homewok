@@ -1,0 +1,41 @@
+# задание 1
+
+
+n = int(input("Введите N: "))
+count = n // 2
+print(f"Количество чётных чисел от 1 до {n}: {count}")
+
+
+
+# задание 2
+
+n = int(input("Количество N чисел: "))
+
+max_num = float(input("Введите 1-е число: "))
+
+for i in range(2, n + 1):
+    current = float(input(f"Введите {i}-е число: "))
+
+    if current > max_num:
+        max_num = current
+
+print("Самое большое число из всех введённых:", max_num)
+
+
+#задание 3
+
+
+n = int(input("Введите число N: "))
+
+if n <= 1:
+    print(f"Число {n} не является совершенным.")
+else:
+    s = 0
+    for i in range(1, n):
+        if n % i == 0:
+            s += i
+
+    if s == n:
+        print(f"Число {n} является совершенным.")
+    else:
+        print(f"Число {n} не является совершенным.")
