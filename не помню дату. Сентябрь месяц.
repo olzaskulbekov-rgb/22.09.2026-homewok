@@ -1,0 +1,85 @@
+# Задание 1
+# Функция с выводом сообщения Пайтон это интересно 3 раза.
+def show_message(message):
+    print(message)
+
+show_message("Пайтон это интересно")
+show_message("Пайтон это интересно")
+show_message("Пайтон это интересно")
+
+# Задание 2
+# Функция с привествием, проверить минимум с двумя именами.
+def greet(name="Ваня"):
+    print(f"Привет {name}!")
+greet()
+greet("Азат")
+
+# Задание 3
+# Функция с возращением квадрата числа, попробуйте с числами 0, 3, -5.
+def square(number):
+    return number * number
+print(square(3))
+print(square(-5))
+print(square(0))
+
+# Задание 4
+# Четное или нечетное
+def is_even(number):
+    if number % 2 == 0:
+        return True
+    else:
+        return False
+print(is_even(5))
+print(is_even(2))
+
+# Задание 5
+# Максимум из двух
+def max_of_two(a,b):
+    if a > b:
+        return a
+    else:
+        return b
+print(max_of_two(2,3))
+print(max_of_two(10,5))
+
+# Задание 6
+# Цена со скидкой
+def calculate_distance(price, discount=0):
+    return price * (1 - discount / 100)
+print(calculate_distance(1000,15))
+print(calculate_distance(5000,25))
+
+# Задание 7
+# Простой калькулятор
+def add(a, b):
+    return a + b
+def subtract(a, b):
+    return a - b
+def multiply(a, b):
+    return a * b
+def divide(a, b):
+    if b == 0:
+        return "На ноль делить нельзя"
+    else:
+        return a / b
+print("Сумма:", add(2,10))
+print("Разность: ", subtract(2,2))
+print("Произведение: ", multiply(2,2))
+print("Деление: ", divide(0,5))
+
+# Задание 8
+# Задание со звездочкой
+def is_palindrome(text):
+    text = text.lower()
+    return text == text[::-1]
+print("Слово палидром? ", is_palindrome("топот"))
+print("Слово палидром? ", is_palindrome("python"))
+
+# Финальное задание
+# Данные об ученике
+def student_info(name, age=None, city="Не указан"):
+    return f"Ученик: {name}, возраст: {age}, город: {city}"
+print(student_info(name = "Арман", age = 16, city = "Костанай"))
+print(student_info(name = "азамат", age = 19, city = "караганда"))
+print(student_info(name = "ислам", age = 16,))
+print(student_info(name= "диас", city = "Астана"))
