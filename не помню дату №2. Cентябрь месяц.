@@ -1,0 +1,119 @@
+# Пропуск на мероприятие EKEB
+def entry_message(group):
+    if group == "Т118":
+        return "Т118: Вход разрешён"
+    else:
+        return "Обратитесь к куратору"
+check_entry = entry_message # Почему не используеться скобки? Мы просто копируем ссылку на функцую.
+user_group = input("Введите номер вашей группы: ") # Если использовать скобки произойет вызов функции
+print(check_entry(user_group))
+print(type(check_entry)) # Это обьект функции, арезультат её вызова строка str
+print(type(check_entry("Т118")))
+
+
+
+
+
+
+# Учебные тарифы поездки в Казахстане
+def standard_fare(km):
+    return 500 + 100 * km
+def student_fare(km):
+    return 300 + 70 * km
+def trip_cost(km, tariff):
+    return tariff(km)
+# Проверка таблицы
+print("Ожидается тенге",trip_cost(10, standard_fare))
+print("Ожидается тенге",trip_cost(10, student_fare))
+print("Ожидается тенге",trip_cost(0, standard_fare))
+print("Ожидается тенге",trip_cost(0, student_fare))
+# Проверка условия
+print("Ожидается тенге",trip_cost(1, standard_fare)) # Почему цена остается 600 и 370?
+print("Ожидается тенге",trip_cost(1, student_fare))  # Это минимальная цена за 1 км.
+
+
+
+
+
+
+# Ярмарка EKEB
+def make_discount(amount):
+    def discount(price):
+        result = price - amount
+        if result < 0:
+            return 0
+        return result
+    return discount
+
+# Создание функций с разными размерами скидок
+discount_0 = make_discount(0)
+discount_100 = make_discount(100)
+discount_300 = make_discount(300)
+
+# Базовые проверки из таблицы
+print(discount_100(250))  # 150
+print(discount_300(250))  # 0
+print(discount_100(100))  # 0
+print(discount_100(0))    # 0
+print(discount_300(500))  # 200
+print(discount_100(500))  # 400
+
+# Дополнительные проверки по условию
+print(discount_0(500))    # 500 (нулевая скидка)
+print(discount_100(99))   # 0   (цена на 1 тенге ниже скидки)
+print(discount_100(101))  # 1   (цена на 1 тенге выше скидки)
+
+
+
+
+
+
+
+
+# 1. Функция-тестировщик
+def check_case(function, value, expected):
+    actual = function(value)
+    return actual == expected
+
+
+# Функция, которую нужно проверить (из условия)
+def ekeb_price(price):
+    if price >= 1000:
+        return price - 100
+    return price
+
+
+# Ошибочная функция (из условия)
+def wrong_price(price):
+    return price - 100
+
+
+# Функция из задания 3 (для проверки)
+def make_discount(amount):
+    def discount(price):
+        result = price - amount
+        if result < 0:
+            return 0
+        return result
+
+    return discount
+
+
+discount_100 = make_discount(100)
+
+
+# --- ПРОВЕРКИ ---
+
+# 1. Тесты для ekeb_price (все True)
+print(check_case(ekeb_price, 999, 999))  # True
+print(check_case(ekeb_price, 1000, 900))  # True
+print(check_case(ekeb_price, 1001, 901))  # True
+
+# 2. Тесты для wrong_price (False, True, True)
+print(check_case(wrong_price, 999, 999))  # False
+print(check_case(wrong_price, 1000, 900))  # True
+print(check_case(wrong_price, 1001, 901))  # True
+
+# 3. Дополнительные проверки из задания
+print(check_case(ekeb_price, 0, 0))  # True (цена 0)
+print(check_case(discount_100, 250, 150))  # True (discount_100 из 3-го задания)
